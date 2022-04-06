@@ -1,7 +1,10 @@
 package com.example;
 
+import java.util.Scanner;
+import java.util.TreeSet;
+
 /**
- * 给航天器一侧加装长方形和正方形的太阳能板(图中的斜线区域)
+ *         给航天器一侧加装长方形和正方形的太阳能板(图中的斜线区域)
  *         需要先安装两个支柱(图中的黑色竖条)
  *         再在支柱的中间部分固定太阳能板
  *         但航天器不同位置的支柱长度不同
@@ -32,4 +35,21 @@ package com.example;
  *         任取其他两根支柱所能获得的面积都小于25 所以最大面积为25
  */
 public class Test15 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String[] split = sc.nextLine().split(",");
+        TreeSet<Integer> treeSet = new TreeSet<>();
+        int area = 0;
+        for (int i = 0; i < split.length; i++) {
+            for (int j = i+1; j < split.length; j++) {
+                    int a = Integer.parseInt(split[i]);
+                    int b = Integer.parseInt(split[j]);
+                    int s = a - b > 0 ? (a - b) * b : (b - a) * a;
+                    treeSet.add(s);
+                area = Math.max(area, s);
+            }
+        }
+        System.out.println(treeSet.last());
+        System.out.println(area);
+    }
 }
