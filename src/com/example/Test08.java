@@ -1,5 +1,8 @@
 package com.example;
 
+import java.util.Scanner;
+import java.util.Stack;
+
 /**
  * 输入一个英文文章片段
  *     翻转指定区间的单词顺序，标点符号和普通字母一样处理
@@ -58,5 +61,24 @@ package com.example;
  *        说明：
  *        指定反转区间只有一个单词，或无有效单词则统一输出EMPTY
  */
-public class Demo42 {
+public class Test08 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String[] split = sc.nextLine().split(" ");
+        int start = Integer.parseInt(sc.nextLine());
+        int end = Integer.parseInt(sc.nextLine());
+        if (split.length <= 1) {
+            System.out.print("EMPTY");
+            return;
+        }
+        for (int i = 0; i < split.length; i++) {
+            if (i < start || i > end) {
+                System.out.print(split[i].trim() + " ");
+            } else {
+                System.out.print(split[start + end - i].trim() + " ");
+            }
+        }
+    }
+
+
 }

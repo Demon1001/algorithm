@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.Scanner;
+
 /**
  *          为了充分发挥Gpu算力，
  *          需要尽可能多的将任务交给GPU执行，
@@ -42,4 +44,22 @@ package com.example;
  *            说明，一次最多执行4个任务  最少耗时5s
  */
 public class Test06 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int m = Integer.parseInt(sc.nextLine());
+        int n = Integer.parseInt(sc.nextLine());
+        int time = 0;
+        int left = 0;
+        String[] split = sc.nextLine().split(" ");
+        for (String s : split) {
+            int num = Integer.parseInt(s);
+            left = (Math.max((num + left - m), 0)) ;
+            time ++ ;
+        }
+        if (left > 0) {
+            time += (left % m == 0 )? (left / m) :(left / m +1);
+        }
+        System.out.println(time);
+        sc.close();
+    }
 }
