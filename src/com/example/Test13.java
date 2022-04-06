@@ -1,7 +1,7 @@
 package com.example;
 
 /**
- * 二叉树也可以用数组来存储
+ *         二叉树也可以用数组来存储
  *         给定一个数组
  *         树的根节点的值储存在下标1
  *         对于储存在下标n的节点，
@@ -37,5 +37,5 @@ package com.example;
  *            输出
  *           5 8 7 6
  */
-public class Demo013 {
+public class Test13 {
 }

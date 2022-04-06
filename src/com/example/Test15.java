@@ -31,5 +31,5 @@ package com.example;
  *         面积为25
  *         任取其他两根支柱所能获得的面积都小于25 所以最大面积为25
  */
-public class Demo015 {
+public class Test15 {
 }

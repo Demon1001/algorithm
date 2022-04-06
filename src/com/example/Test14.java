@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.*;
+
 /**
  * 一辆运送快递的货车。运送的快递均放在大小不等的长方形快递盒中
  *         为了能够装载更多的快递 同时不能让货车超载
@@ -27,5 +29,25 @@ package com.example;
  *          输出
  *          3
  */
-public class Demo35 {
+public class Test14 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String[] split = sc.nextLine().split(",");
+        int sum = Integer.parseInt(sc.nextLine());
+        List<Integer> list = new ArrayList<>();
+        for (String s : split) {
+            list.add(Integer.parseInt(s));
+        }
+        int s = 0;
+        int count = 0;
+        list.sort(Comparator.comparingInt(a->a));
+        for (int i = 0; i < list.size(); i++) {
+            s += list.get(i);
+            if (s >= sum) {
+                break;
+            }
+            count++;
+        }
+        System.out.println(count);
+    }
 }

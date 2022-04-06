@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.*;
+
 /**
  *         对一个数据a进行分类
  *         分类方法是 此数据a(4个字节大小)的4个字节相加对一个给定值b取模
@@ -54,4 +56,30 @@ package com.example;
  *          2
  */
 public class Test11 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String[] split = sc.nextLine().split(" ");
+        int c= Integer.parseInt(split[0]);
+        int b = Integer.parseInt(split[1]);
+        HashSet<Integer> set = new HashSet<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
+        ArrayList<Integer> integers = new ArrayList<>();
+        for (int i = 2; i < split.length; i++) {
+            int k = intToSum(Integer.parseInt(split[i])) % b;
+            integers.add(intToSum(Integer.parseInt(split[i])) % b);
+            if (k < c) {
+                Integer v = map.getOrDefault(k, 0);
+                map.put(k, v + 1);
+            }
+        }
+        System.out.println(map.values().stream().max(Comparator.comparingInt(a -> a)).get());
+    }
+
+    private static int intToSum(int x) {
+        int sum = 0;
+        for (int i = 0; i < 4; i++) {
+            sum += (byte) (x >> (i * 8));
+        }
+        return sum;
+    }
 }
