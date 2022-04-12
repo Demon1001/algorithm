@@ -1,7 +1,9 @@
 package com.example;
 
+import java.util.*;
+
 /**
- * 给定一个射击比赛成绩单
+ *    给定一个射击比赛成绩单
  *   包含多个选手若干次射击的成绩分数
  *   请对每个选手按其最高三个分数之和进行降序排名
  *   输出降序排名后的选手id序列
@@ -49,5 +51,34 @@ package com.example;
  *         由于3号和5号成绩相等  且id 5>3
  *         所以输出5,3,7,4
  */
-public class Demo105 {
+public class Test86 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        String[] idStr = sc.nextLine().split(",");
+        String[] scoreStr = sc.nextLine().split(",");
+        Map<Integer, List<Integer>> scoreMap = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            int id = Integer.parseInt(idStr[i]);
+            List<Integer> orDefault = scoreMap.getOrDefault(id, new ArrayList<>());
+            orDefault.add(Integer.parseInt(scoreStr[i]));
+            scoreMap.put(id, orDefault);
+        }
+        StringBuilder sb = new StringBuilder();
+        scoreMap.keySet().stream().filter(k->scoreMap.get(k).size()>=3).sorted((k1, k2) -> {
+            List<Integer> v1 = scoreMap.get(k1);
+            List<Integer> v2 = scoreMap.get(k2);
+            v1.sort(Integer::compareTo);
+            v2.sort(Integer::compareTo);
+            int sum1 = v1.get(v1.size() - 1) + v1.get(v1.size() - 2) + v1.get(v1.size() - 3);
+            int sum2 = v2.get(v2.size() - 1) + v2.get(v2.size() - 2) + v2.get(v2.size() - 3);
+            if (sum1 == sum2) {
+                return k2 - k1;
+            } else {
+                return sum2 -sum1;
+            }
+        }).forEach(k->sb.append(k).append(","));
+        System.out.println(sb.substring(0,sb.length() - 1));
+
+    }
 }

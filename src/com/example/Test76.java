@@ -1,5 +1,10 @@
 package com.example;
 
+import com.sun.jdi.PathSearchingVirtualMachine;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  * 在学校中
  *   N个小朋友站成一队
@@ -48,5 +53,28 @@ package com.example;
  *        125的好朋友是6位置上的126
  *         依此类推
  */
-public class Demo88 {
+public class Test76 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        String[] split = sc.nextLine().split(" ");
+        StringBuilder sb = new StringBuilder();
+        ArrayList<Integer> integers = new ArrayList<>();
+        for (int i = 0; i < split.length; i++) {
+            int pos = 0;
+            for (int j = i+1; j < split.length; j++) {
+                int cur = Integer.parseInt(split[i]);
+                int fri = Integer.parseInt(split[j]);
+                if (fri > cur) {
+                    sb.append(j).append(" ");
+                    pos = j;
+                    break;
+                }
+            }
+            if (pos == 0) {
+                sb.append("0").append(" ");
+            }
+        }
+        System.out.println(sb);
+    }
 }

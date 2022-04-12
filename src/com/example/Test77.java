@@ -1,7 +1,13 @@
 package com.example;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
 /**
- * 双十一众多商品进行打折销售
+ *    双十一众多商品进行打折销售
  *   小明想购买自己心仪的一些物品
  *   但由于购买资金限制
  *   所以他决定从众多心仪商品中购买三件
@@ -43,5 +49,30 @@ package com.example;
  *
  *    输入格式正确无需考虑输入错误情况
  */
-public class Demo89 {
+public class Test77 {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String[] split = sc.nextLine().split(",");
+        int lim = Integer.parseInt(sc.nextLine());
+        List<Integer> collect = Arrays.stream(split).map(Integer::parseInt).sorted(Integer::compareTo).collect(Collectors.toList());
+        int sum = 0;
+        if (collect.size() < 3) {
+            System.out.println("-1");
+        }
+        int max = -1;
+        for (int i = 0; i < collect.size(); i++) {
+            for (int j = i+1; j < collect.size(); j++) {
+                for (int k = j+1; k < collect.size(); k++) {
+                    sum = collect.get(i) + collect.get(j) + collect.get(k);
+                    if (sum < lim) {
+                        max = Math.max(sum, max);
+                    }
+                }
+
+            }
+        }
+        System.out.println(max);
+    }
+
 }

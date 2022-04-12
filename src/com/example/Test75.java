@@ -1,5 +1,10 @@
 package com.example;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.TreeSet;
+
 /**
  * 输入一串字符串
  *   字符串长度不超过100
@@ -34,5 +39,17 @@ package com.example;
  *
  *     字符串区分大小写
  */
-public class Demo87 {
+public class Test75 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        char[] chars = sc.nextLine().toCharArray();
+        HashMap<Character, Integer> res = new HashMap<Character, Integer>();
+        for (char aChar : chars) {
+            Integer orDefault = res.getOrDefault(aChar, 0);
+            res.put(aChar, orDefault + 1);
+        }
+        TreeSet<Integer> treeSet = new TreeSet<Integer>(res.values());
+        Integer last = treeSet.last();
+        System.out.println(last);
+    }
 }

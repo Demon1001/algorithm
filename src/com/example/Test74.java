@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.Scanner;
+
 /**
  * 特定大小的停车场 数组cars表示
  *     其中1表示有车  0表示没车
@@ -41,5 +43,21 @@ package com.example;
  *          一个小车占第9个车位
  *          最少3俩个车
  */
-public class Demo85 {
+public class Test74 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String[] split = sc.nextLine().replaceAll(",", "").split("[0]+");
+        int cnt = 0;
+        for (String s : split) {
+            int len = s.length();
+            while (len > 3) {
+                len -= 3;
+                cnt++;
+            }
+            if (len != 0) {
+                cnt++;
+            }
+        }
+        System.out.println(cnt);
+    }
 }
