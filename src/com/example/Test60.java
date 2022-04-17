@@ -1,7 +1,12 @@
 package com.example;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
 /**
- * 游戏规则：
+ *      游戏规则：
  *     输入一个只包含英文字母的字符串,
  *     字符串中的两个字母如果相邻且相同,就可以消除。
  *     在字符串上反复执行消除的动作,
@@ -40,5 +45,28 @@ package com.example;
  *        均为异常输入
  *        直接返回0
  */
-public class Demo55 {
+public class Test60 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        String re = str.replaceAll("[a-z]", "").replaceAll("[A-Z]", "");
+        if (re.length() > 0) {
+            System.out.println("0");
+            return;
+        }
+        String[] strs = str.split("");
+
+        LinkedList<String> link = Arrays.stream(strs).collect(Collectors.toCollection(LinkedList::new));
+        for (int i = 0; i < link.size() - 1; i++) {
+            if (link.get(i).equals(link.get(i+1))) {
+                link.remove(i);
+                link.remove(i);
+                i = i - 2;
+            }
+
+        }
+        System.out.println(link.size());
+
+    }
+
 }

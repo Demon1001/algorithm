@@ -1,7 +1,9 @@
 package com.example;
 
+import java.util.Scanner;
+
 /**
- * 给你两个字符串t和p
+ *      给你两个字符串t和p
  *     要求从t中找到一个和p相同的连续子串
  *     并输出该子串第一个字符的下标
  *     输入描述
@@ -24,5 +26,15 @@ package com.example;
  *         输出
  *          4
  */
-public class Demo57 {
+public class Test61 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String t = sc.nextLine();
+        String p = sc.nextLine();
+        if (t.contains(p)) {
+            System.out.println(t.indexOf(p)+1);
+        } else {
+            System.out.println("No");
+        }
+    }
 }

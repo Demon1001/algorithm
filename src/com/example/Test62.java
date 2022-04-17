@@ -1,7 +1,12 @@
 package com.example;
 
+import jdk.swing.interop.SwingInterOpUtils;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
 /**
- * 有一种简易压缩算法：针对全部为小写英文字母组成的字符串，
+ *      有一种简易压缩算法：针对全部为小写英文字母组成的字符串，
  *     将其中连续超过两个相同字母的部分压缩为连续个数加该字母
  *     其他部分保持原样不变.
  *     例如字符串aaabbccccd  经过压缩变成字符串 3abb4cd
@@ -45,5 +50,37 @@ package com.example;
  *          全部由小写英文字母做成的字符串，压缩后不会出现特殊字符@和大写字母A
  *          故输入不合法
  */
-public class Demo58 {
+public class Test62 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        char[] originChars = str.toCharArray();
+        char[] chars = str.replaceAll("[a-z]", "").toCharArray();
+        StringBuilder sb = new StringBuilder();
+        for (char s : chars) {
+            if (!Character.isDigit(s)) {
+                System.out.println("!error");
+                return;
+            }
+            if (Character.digit(s, 10) < 3) {
+                System.out.println("!error");
+                return;
+            }
+        }
+        int cur = 0;
+        for (char c : originChars) {
+            if (Character.isDigit(c)) {
+                cur = Character.digit(c, 10);
+            } else {
+                if (cur != 0) {
+                    sb.append(String.valueOf(c).repeat(Math.max(0, cur)));
+                    cur = 0;
+                } else {
+                    sb.append(c);
+                }
+            }
+        }
+        System.out.println(sb);
+    }
+
 }

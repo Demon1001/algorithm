@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.Scanner;
+
 /**
  * 输入描述：
  *     第一行输入N：N表示有N个小朋友
@@ -33,5 +35,25 @@ package com.example;
  *     125的好朋友是6位置上的126
  *     以此类推
  */
-public class Demo81 {
+public class Test72 {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        String[] split = sc.nextLine().split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            int index = 0;
+            for (int j = i+1; j < n; j++) {
+                int fri = Integer.parseInt(split[j]);
+                int cur = Integer.parseInt(split[i]);
+                if (fri > cur) {
+                    index = j;
+                    break;
+                }
+            }
+            sb.append(index).append(" ");
+        }
+        System.out.println(sb.substring(0,sb.length()-1));
+    }
 }

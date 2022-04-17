@@ -1,7 +1,11 @@
 package com.example;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Scanner;
+
 /**
- * 给定两个字符集合
+ *     给定两个字符集合
  *     一个是全量字符集
  *     一个是已占用字符集
  *     已占用字符集中的字符不能再使用
@@ -40,5 +44,32 @@ package com.example;
  *        因此剩余可用字符为2个a，3个b，2个c
  *        因此输出a:2,b:3,c:2
  */
-public class Demo60 {
+public class Test63 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        String[] split = str.split("@");
+        String[] allStr = split[0].split(",");
+        String[] oldStr = split[1].split(",");
+        HashMap<String, Integer> all = new LinkedHashMap<>();
+        HashMap<String, Integer> old = new LinkedHashMap<>();
+        StringBuilder sb = new StringBuilder();
+        for (String s : allStr) {
+            String[] kv = s.split(":");
+            all.put(kv[0], Integer.parseInt(kv[1]));
+        }
+        for (String s : oldStr) {
+            String[] kv = s.split(":");
+            old.put(kv[0], Integer.parseInt(kv[1]));
+        }
+        for (String k : all.keySet()) {
+            int v = all.get(k);
+            if (old.containsKey(k)) {
+                int v1 = old.get(k);
+                all.put(k, v - v1);
+            }
+        }
+        all.keySet().stream().filter(k->all.get(k)>0).forEach(k->sb.append(k).append(":").append(all.get(k)).append(","));
+        System.out.println(sb.substring(0,sb.length()-1));
+    }
 }

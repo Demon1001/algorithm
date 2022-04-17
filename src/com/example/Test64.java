@@ -1,7 +1,11 @@
 package com.example;
 
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.Set;
+
 /**
- * 绘图机器的绘图笔初始位置在原点(0,0)
+ *         绘图机器的绘图笔初始位置在原点(0,0)
  *         机器启动后按照以下规则来进行绘制直线
  *         1. 尝试沿着横线坐标正向绘制直线
  *          直到给定的终点E
@@ -41,5 +45,24 @@ package com.example;
  *           输出:
  *            4
  */
-public class Demo72 {
+public class Test64 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String[] firstLine = sc.nextLine().split(" ");
+        int n = Integer.parseInt(firstLine[0]);
+        int e = Integer.parseInt(firstLine[1]);
+        int curX = 0, curY = 0, area = 0;
+        for (int i = 0; i < n; i++) {
+            String[] split = sc.nextLine().split(" ");
+            int x = Integer.parseInt(split[0]);
+            int y = Integer.parseInt(split[1]);
+            area += (x - curX) * Math.abs(curY);
+            curX = x;
+            curY += y;
+        }
+        if (curX < e) {
+            area += (e - curX) * Math.abs(curY);
+        }
+        System.out.println(area);
+    }
 }

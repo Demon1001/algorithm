@@ -1,7 +1,12 @@
 package com.example;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
 /**
- * 单词接龙的规则是
+ *          单词接龙的规则是
  *         可用于接龙的单词首字母必须要与前一个单词的尾字母相同
  *         当存在多个首字母相同的单词时
  *         取长度最长的单词
@@ -56,5 +61,37 @@ package com.example;
  *          输出：
  *          dwordda
  */
-public class Demo47 {
+public class Test55 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int k = Integer.parseInt(sc.nextLine());
+        int n = Integer.parseInt(sc.nextLine());
+        ArrayList<String> strings = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            strings.add(sc.nextLine());
+        }
+        LinkedList<String> link = new LinkedList<>(strings);
+        String first = link.get(k);
+        String tail = first.substring(first.length() - 1);
+        link.remove(k);
+        StringBuilder sb = new StringBuilder();
+        sb.append(first);
+        for (int i = 0; i < strings.size(); i++) {
+            String finalTail = tail;
+            LinkedList<String> linkList = link.stream().filter(s -> s.startsWith(finalTail)).sorted((s1, s2) -> {
+                if (s1.length() != s2.length()) {
+                    return s2.length() - s1.length();
+                }
+                return s1.compareTo(s2);
+            }).collect(Collectors.toCollection(LinkedList::new));
+            if (linkList.size() == 0) {
+                break;
+            }
+            String first1 = linkList.getFirst();
+            sb.append(first1);
+            tail = first1.substring(first1.length() - 1);
+            link.remove(first1);
+        }
+        System.out.println(sb);
+    }
 }

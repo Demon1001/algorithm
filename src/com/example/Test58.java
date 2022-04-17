@@ -1,7 +1,10 @@
 package com.example;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 /**
- * 一个工厂有m条流水线
+ *          一个工厂有m条流水线
  *         来并行完成n个独立的作业
  *         该工厂设置了一个调度系统
  *         在安排作业时，总是优先执行处理时间最短的作业
@@ -28,8 +31,8 @@ package com.example;
  *
  *         案例
  *         输入
- * 3 5
- * 8 4 3 2 10
+ *         3 5
+ *         8 4 3 2 10
  *         输出
  *         13
  *         说明
@@ -43,5 +46,27 @@ package com.example;
  *         3 9
  *         1 1 1 2 3 4 6 7 8
  */
-public class Demo51 {
+public class Test58 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String[] split = sc.nextLine().split(" ");
+        int m = Integer.parseInt(split[0]);
+        int n = Integer.parseInt(split[1]);
+        String[] taskStr = sc.nextLine().split(" ");
+        List<Integer> list = Arrays.stream(taskStr).map(Integer::parseInt).sorted(Integer::compareTo).collect(Collectors.toList());
+        ArrayList<Integer> integers = new ArrayList<>();
+
+        for (int i = 0; i < m; i++) {
+            integers.add(list.get(i));
+        }
+        for (int i = m; i < list.size(); i++) {
+            ArrayList<Integer> orderList = new ArrayList<>(new TreeSet<Integer>(integers));
+            Integer min = orderList.get(0);
+            int index = integers.indexOf(min);
+            integers.set(index, min + list.get(i));
+        }
+        Integer max = integers.stream().max(Integer::compareTo).get();
+        System.out.println(max);
+    }
+
 }

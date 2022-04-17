@@ -1,7 +1,6 @@
 package com.example;
 
 import java.util.Scanner;
-import java.util.Stack;
 
 /**
  * 输入一个英文文章片段
@@ -61,7 +60,7 @@ import java.util.Stack;
  *        说明：
  *        指定反转区间只有一个单词，或无有效单词则统一输出EMPTY
  */
-public class Test08 {
+public class Test54 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String[] split = sc.nextLine().split(" ");

@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.Scanner;
+
 /**
  * 停车场有一横排车位0代表没有停车,1代表有车.
  *        至少停了一辆车在车位上,也至少有一个空位没有停车.
@@ -29,5 +31,29 @@ package com.example;
  *        其他位置距离为1
  *        因此最大距离为2
  */
-public class Demo41 {
+public class Test53 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String line = sc.nextLine().replaceAll(",", "");
+        char[] sites = line.toCharArray();
+        int max = 0;
+        for (int i = 0; i < sites.length; i++) {
+            char cur = sites[i];
+            if (cur == '0') {
+                int pre = line.indexOf('1', i);
+                int suf = line.lastIndexOf('1', i);
+                if (pre == -1) {
+                    pre = 100;
+                }
+                if (suf == -1) {
+                    suf = line.length() - 1;
+                }
+                int min = Math.min(pre - i, i - suf);
+                if (min > max) {
+                    max = min;
+                }
+            }
+        }
+        System.out.println(max);
+    }
 }

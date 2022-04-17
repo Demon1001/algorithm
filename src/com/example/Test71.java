@@ -1,7 +1,13 @@
 package com.example;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
 /**
- * 现在有一队小朋友，他们高矮不同，
+ *     现在有一队小朋友，他们高矮不同，
  *     我们以正整数数组表示这一队小朋友的身高，如数组{5,3,1,2,3}。
  *     我们现在希望小朋友排队，以“高”“矮”“高”“矮”顺序排列，
  *     每一个“高”位置的小朋友要比相邻的位置高或者相等；
@@ -44,5 +50,33 @@ package com.example;
  *        []
  *      说明：出现非法参数情况，返回空数组
  */
-public class Demo80 {
+public class Test71 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String[] split = sc.nextLine().split(" ");
+        List<Integer> list = null;
+        try {
+            list = Arrays.stream(split).map(Integer::parseInt).collect(Collectors.toList());
+        } catch (Exception e) {
+            System.out.println("[]");
+        }
+        for (int i = 0; i < list.size()-1; i++) {
+            if (i % 2 == 0) {
+                if (list.get(i + 1) > list.get(i)) {
+                    swap(list,i + 1, i);
+                }
+            }
+            if (i % 2 == 1) {
+                if (list.get(i + 1) < list.get(i)) {
+                    swap(list,i + 1, i);
+                }
+            }
+        }
+        System.out.println(list.toString().replaceAll("\\[","").replaceAll("\\]","").replaceAll(",",""));
+
+    }
+
+    private static void swap(List<Integer> list, Integer i, Integer j) {
+        list.set(i, list.set(j, list.get(i)));
+    }
 }
