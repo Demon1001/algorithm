@@ -1,7 +1,7 @@
 package com.example;
 
 /**
- * 相对开音节构成的结构为辅音+元音(aeiou)+辅音(r除外)+e
+ *          相对开音节构成的结构为辅音+元音(aeiou)+辅音(r除外)+e
  *          常见的单词有bike cake
  *          给定一个字符串，以空格为分隔符
  *          反转每个单词的字母
@@ -35,5 +35,5 @@ package com.example;
  *                  因为!ekam含有非英文字母，所以未反转
  *                  其中 cake和keke 为相对开音节子串 返回2
  */
-public class Demo32 {
+public class Test47 {
 }

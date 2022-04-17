@@ -24,5 +24,5 @@ package com.example;
  *                (4) 4/2=2;
  *                (5) 2/2=1;
  */
-public class Demo36 {
+public class Test50 {
 }

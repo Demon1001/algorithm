@@ -3,7 +3,7 @@ package com.example;
 import java.util.*;
 
 /**
- * 一辆运送快递的货车。运送的快递均放在大小不等的长方形快递盒中
+ *         一辆运送快递的货车。运送的快递均放在大小不等的长方形快递盒中
  *         为了能够装载更多的快递 同时不能让货车超载
  *         需要计算最多能装多少个快递
  *         快递的体积不受限制
@@ -29,7 +29,7 @@ import java.util.*;
  *          输出
  *          3
  */
-public class Test14 {
+public class Test49 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String[] split = sc.nextLine().split(",");

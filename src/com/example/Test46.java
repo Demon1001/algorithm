@@ -43,5 +43,5 @@ package com.example;
  *                            =2*93+3*12+4
  *                            =226
  */
-public class Demo30 {
+public class Test46 {
 }
